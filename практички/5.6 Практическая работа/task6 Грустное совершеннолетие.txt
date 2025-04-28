@@ -1,0 +1,51 @@
+#include <iostream>
+
+/*
+Задание 6. Грустное совершеннолетие
+Что нужно сделать
+Напишите программу для бармена, который не умеет считать.
+
+Условие:
+
+Посетитель пришёл в бар и попросил кружку пива.
+
+Напишите программу для бармена, который не умеет считать, чтобы по заданной дате
+рождения посетителя и текущей дате определить, можно ему продавать алкоголь или
+нет.
+
+Программа должна попросить ввести сегодняшнюю дату и дату рождения покупателя,
+после чего ответить: «можно» или «нельзя».
+
+Учтите, что в день восемнадцатилетия алкоголь продавать посетителю ещё нельзя, а
+вот на следующий день после этого — уже можно.
+
+Советы и рекомендации
+Программа должна работать с любым годом и не должна быть привязана к
+определённой дате. Постарайтесь сделать свою программу по возможности
+лаконичнее.
+*/
+
+int ageCheck() {
+  std::cout << "Введите сегодняшнюю дату: ";
+  int today_day, today_month, today_year;
+  std::cin >> today_day >> today_month >> today_year;
+  if (today_month < 1 || today_month > 12 || today_day < 1 || today_day > 31) {
+    std::cout << "Некорректная дата";
+    std::cout << "Введите сегодняшнюю дату: ";
+    std::cin >> today_day >> today_month >> today_year;
+  }
+  std::cout << "Введите дату рождения: ";
+  int birth_day, birth_month, birth_year;
+  std::cin >> birth_day >> birth_month >> birth_year;
+  if (birth_month < 1 || birth_month > 12 || birth_day < 1 || birth_day > 31) {
+    std::cout << "Некорректная дата";
+    std::cout << "Введите дату рождения: ";
+    std::cin >> birth_day >> birth_month >> birth_year;
+  }
+  if (today_year - birth_year > 18 || (today_year - birth_year == 18 && today_month > birth_month) || (today_year - birth_year == 18 && today_month == birth_month && today_day > birth_day)){
+    std::cout << "Можно";
+  } else {
+    std::cout << "Нельзя";
+  }
+  return 0;
+}

@@ -1,0 +1,45 @@
+#include <iostream>
+
+/*
+Задание 8. Зарплата (дополнительное задание)
+Что нужно сделать
+В отделе маркетинга работают три сотрудника. Их зарплаты могут быть как разными,
+так и одинаковыми. Напишите программу, которая вычисляет разницу между самой
+высокой и самой низкой зарплатами сотрудников, а также среднее арифметическое
+зарплат всех сотрудников отдела.
+*/
+
+int task8() {
+  int salary1, salary2, salary3;
+  std::cout << "Введите зарплаты 3 сотрудников через ввод:\n";
+  std::cin >> salary1 >> salary2 >> salary3;
+  int maxSalary;
+  int minSalary;
+  if (salary1 > salary2 && salary1 > salary3) {
+    maxSalary = salary1;
+  } else if (salary2 > salary1 && salary2 > salary3) {
+    maxSalary = salary2;
+  } else {
+    maxSalary = salary3;
+  }
+  if (salary1 < salary2 && salary1 < salary3) {
+    minSalary = salary1;
+  } else if (salary2 < salary1 && salary2 < salary3) {
+    minSalary = salary2;
+  } else {
+    minSalary = salary3;
+  }
+  std::cout << "\n"
+            << "salary1: " << salary1 << " salary2: " << salary2
+            << " salary3: " << salary3 << "\n";
+  // int maxSalary = std::max(salary1, std::max(salary2, salary3));
+  // int minSalary = std::min(salary1, std::min(salary2, salary3));
+  std::cout << "\nмакс: " << maxSalary << " мин: " << minSalary;
+  std::cout << "\n"
+            << "Разница между самой высокой и самой низкой зарплатой: "
+            << maxSalary - minSalary << "\n";
+  double summ = salary1 + salary2 + salary3;
+  std::cout << "Среднее арифметическое зарплат всех сотрудников: "
+            << summ / 3;
+  return 0;
+}

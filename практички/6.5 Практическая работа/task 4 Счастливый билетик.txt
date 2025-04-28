@@ -1,0 +1,73 @@
+#include <iostream>
+
+/*
+Задание 4. Счастливый билетик
+Что нужно сделать
+В старину, когда даже в столице билеты в общественном транспорте выдавали
+контролёры, существовало поверье: если на билете сумма первых трёх цифр в номере
+билета равна сумме трёх последних, то это к удаче. Напишите программу, которая
+получала бы на вход шестизначный номер билета и выводила, счастливый это билет
+или нет. К примеру, билеты 666 666 и 252 135 — счастливые, а 123 456 — нет.
+
+Пример выполнения
+
+            Введите номер билета: 123060
+            Билет счастливый!
+            Введите номер билета: 123040
+            Повезёт в следующий раз!
+
+Рекомендации по выполнению
+Программу необходимо сделать так, чтобы можно было увеличить количество цифр в
+билете без особых изменений в коде. Для получения младшего разряда числа (самой
+правой цифры) используйте выражение: one_digit = digits % 10. Используйте циклы
+для подсчёта суммы цифр в номере билета. Что оценивается Программа корректно
+определяет, является ли билет счастливым. Для подсчёта суммы цифр в билете
+используются циклы.
+*/
+
+int main() {
+  int ticketNumber;
+  int digitsNumber = 0;
+  int digitsToSum;
+  int sumFirstDigits = 0;
+  int sumLastDigits = 0;
+  std::cout << "Введите номер билета: ";
+  std::cin >> ticketNumber;
+  std::cout << "Введите количество цифр, которые нужно сложить: ";
+  std::cin >> digitsToSum;
+  int counter = ticketNumber;
+  while (ticketNumber != 0) {
+    ticketNumber /= 10;
+    digitsNumber++;
+  }
+  ticketNumber = counter;
+  counter = 0;
+  std::cout << "Количество цифр в номере билета: " << ticketNumber << " "
+            << digitsNumber << std::endl;
+  while (counter < digitsToSum) {
+    sumFirstDigits += ticketNumber % 10;
+    ticketNumber /= 10;
+    counter++;
+  }
+  std::cout << "Сумма последних чисел равна: " << sumFirstDigits << std::endl;
+  counter = 0;
+  int lastDigits = 0;
+  while (counter != (digitsNumber - digitsToSum)) {
+    lastDigits = (lastDigits * 10) + (ticketNumber % 10);
+    ticketNumber /= 10;
+    counter++;
+  }
+  std::cout << "Первые числа: " << lastDigits << std::endl;
+  counter = 0;
+  while (counter < digitsToSum) {
+    sumLastDigits += lastDigits % 10;
+    lastDigits /= 10;
+    counter++;
+  }
+  std::cout << "Сумма последних чисел равна: " << sumLastDigits << std::endl;
+  if (sumFirstDigits == sumLastDigits) {
+    std::cout << "Билет счастливый!" << std::endl;
+  } else {
+    std::cout << "Повезёт в следующий раз!" << std::endl;
+  }
+}

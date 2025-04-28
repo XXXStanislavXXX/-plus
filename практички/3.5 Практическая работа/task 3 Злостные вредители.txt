@@ -1,0 +1,31 @@
+#include <iostream>
+
+int task3() {
+  float startHeight;
+  std::cout << "Введите начальную высоту бамбука: ";
+  std::cin >> startHeight;
+  int growth;
+  std::cout << "Введите скорость роста бамбука: ";
+  std::cin >> growth;
+  int losses;
+  std::cout << "Введите скорость поедания бамбука: ";
+  std::cin >> losses;
+  float daysCount;
+  std::cout << "Введите количество дней: ";
+  std::cin >> daysCount;
+  while (daysCount >= 1) {
+    startHeight += growth - losses;
+    daysCount -= 1;
+    std::cout << "Количество дней " << daysCount << "\n";
+    std::cout << "Высота бамбука " << startHeight << "\n";
+  }
+  startHeight += growth * daysCount; // нашел ошибку
+  std::cout
+      << "Высота бамбука "
+      << startHeight; // можно ли считать, что посчитано одной формулой?
+                      // попробовал сам себе усложнить - сделать так, чтобы мы
+                      // сами иогли задавать значения переменных, количество
+                      // дней можно указывать дробным значением, например - к
+                      // середине третьего дня это 2.5 дня роста
+  return 0;
+}
