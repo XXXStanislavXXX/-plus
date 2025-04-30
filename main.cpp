@@ -1,36 +1,49 @@
 #include <iostream>
 
 /*
-Задача 5. Начальник (цикл for).
-Перепишите программу из прошлого модуля, используя цикл for.
-Напишите программу для робота-начальника. Он спрашивает у пользователя,
-выполнил ли он задание, которое тот выдавал вчера, и продолжает это делать до
-тех пор, пока пользователь не ответит ему “Да, конечно, сделал”. Для большей
-реалистичности в конце пусть робот-начальник пожалуется: “Ну почему тебя нужно
-спрашивать N раз?”, где N — это число попыток, которые были потрачены
-пользователем, прежде чем он ввёл правильный ответ.
+Задача 3. Крепкий орешек.
+Мы разрабатываем пошаговую игру по мотивам боевика. Игрок — главный герой и
+должен обезвредить бомбу, которая взорвётся через 10 итераций цикла.
+Программа спрашивает пользователя хочет ли он перерезать провод сейчас.
+Если ответ “нет”, то счетчик бомбы уменьшается. Если он достиг нуля, то
+программа выдаёт сообщение “Бомба взорвалась”, а если не достиг, то программа
+вновь переспрашивает, не хочет ли игрок обезвредить бомбу, и сообщает, сколько
+времени осталось до взрыва. Если ответ “да”, то программа выводит на экран
+сообщение о том, что бомба обезврежена и сколько шагов оставалось до взрыва.
+Используйте цикл for.
 */
 
 int main()
 {
+    int time = 10;
     std::string answer;
-    bool isDone = false;
 
-    for (int attempts = 0; !isDone; attempts++)
+    for (int i = 0; i < 10; ++i)
     {
-        std::cout << "Did you do the task I gave you yesterday? (Yes/No)" << std::endl;
+        std::cout << "Do you want to cut a wire? (yes/no) : ";
         std::cin >> answer;
 
-        if (answer == "Yes " || answer == "yes" || answer == "YES" ||
-            answer == "Yes, of course" || answer == "yes, of course" || answer == "YES, OF COURSE")
+        if (answer == "yes")
         {
-            std::cout << "Well done!" << std::endl;
-            std::cout << "Why should i ask you " << attempts << " times?" << std::endl;
-            isDone = !isDone;
+            std::cout << "Bomb is disarmed! Time before explode: " << time - i << std::endl;
+            return 0;
+        }
+        else if (answer == "no")
+        {
+            --time;
+            if (time == 0)
+            {
+                std::cout << "Yore DEAD!" << std::endl;
+                return 0;
+            }
+            else
+            {
+                std::cout << "Time till explode: " << time << std::endl;
+            }
         }
         else
         {
-            std::cout << "You are a bad employee!" << std::endl;
+            std::cout << "invalid answer! Please enter 'yes' or 'no'." << std::endl;
         }
     }
 
