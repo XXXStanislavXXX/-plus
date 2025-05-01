@@ -1,50 +1,37 @@
 #include <iostream>
 
 /*
-Задача 3. Крепкий орешек.
-Мы разрабатываем пошаговую игру по мотивам боевика. Игрок — главный герой и
-должен обезвредить бомбу, которая взорвётся через 10 итераций цикла.
-Программа спрашивает пользователя хочет ли он перерезать провод сейчас.
-Если ответ “нет”, то счетчик бомбы уменьшается. Если он достиг нуля, то
-программа выдаёт сообщение “Бомба взорвалась”, а если не достиг, то программа
-вновь переспрашивает, не хочет ли игрок обезвредить бомбу, и сообщает, сколько
-времени осталось до взрыва. Если ответ “да”, то программа выводит на экран
-сообщение о том, что бомба обезврежена и сколько шагов оставалось до взрыва.
-Используйте цикл for.
+Задание 8. Ёлочка* (дополнительное задание)
+Что нужно сделать
+Напишите программу, которая выводит на экран равнобедренный треугольник,
+заполненный символами решётки «#». Пусть высота треугольника вводится
+пользователем. Обеспечьте контроль ввода.
 */
 
 int main()
 {
-    int time = 10;
-    std::string answer;
+    int height;
+    std::cout << "Please enter the height of the triangle: ", std::cin >> height;
 
-    for (int i = 0; i < 10; ++i)
+    while (height < 0)
     {
-        std::cout << "Do you want to cut a wire? (yes/no) : ";
-        std::cin >> answer;
+        std::cout << "Invalid input." << std::endl;
+        std::cout << "Please enter the height of the triangle: ", std::cin >> height;
+    }
 
-        if (answer == "yes")
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < height - i - 1; j++)
         {
-            std::cout << "Bomb is disarmed! Time before explode: " << time - i << std::endl;
-            return 0;
+            std::cout << " ";
         }
-        else if (answer == "no")
+
+        for (int j = 0; j < 2 * i + 1; j++)
         {
-            --time;
-            if (time == 0)
-            {
-                std::cout << "Yore DEAD!" << std::endl;
-                return 0;
-            }
-            else
-            {
-                std::cout << "Time till explode: " << time << std::endl;
-            }
+            std::cout << "#";
         }
-        else
-        {
-            std::cout << "invalid answer! Please enter 'yes' or 'no'." << std::endl;
-        }
+
+        std::cout << std::endl;
     }
 
     return 0;
