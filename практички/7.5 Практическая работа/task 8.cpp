@@ -13,7 +13,7 @@ int main()
     int height;
     std::cout << "Please enter the height of the triangle: ", std::cin >> height;
 
-    while (height < 0)
+    while (height <= 0)
     {
         std::cout << "Invalid input." << std::endl;
         std::cout << "Please enter the height of the triangle: ", std::cin >> height;
