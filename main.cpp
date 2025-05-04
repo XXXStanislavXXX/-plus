@@ -1,38 +1,28 @@
 #include <iostream>
 
 /*
-Задание 8. Ёлочка* (дополнительное задание)
-Что нужно сделать
-Напишите программу, которая выводит на экран равнобедренный треугольник,
-заполненный символами решётки «#». Пусть высота треугольника вводится
-пользователем. Обеспечьте контроль ввода.
+Задача 3. Постоянный покупатель
+Иногда к Араику Вачагановичу приходят постоянные покупатели, для которых он
+делает скидку. Для каждого такого клиента скидка своя. Модифицируйте программу
+из задачи «Орехи»: Араик будет вводить цену товара за 100 грамм, вес покупки и
+размер скидки в процентах, а программа должна выводить итоговую стоимость.
 */
 
 int main()
 {
-    int height;
-    std::cout << "Please enter the height of the triangle: ", std::cin >> height;
+    float price, weight, discount;
+    std::cout << "Enter the price for 100 grams, weight and discount: ", std::cin >> price >> weight >> discount;
 
-    while (height < 0)
+    while (price < 0 || weight < 0 || discount > 100)
     {
-        std::cout << "Invalid input." << std::endl;
-        std::cout << "Please enter the height of the triangle: ", std::cin >> height;
+        std::cout << "Invalid input. Please enter positive values for price, weight and discount (0-100): ";
+        std::cin >> price >> weight >> discount;
     }
 
-    for (int i = 0; i < height; i++)
-    {
-        for (int j = 0; j < height - i - 1; j++)
-        {
-            std::cout << " ";
-        }
+    float discountAmount = price * discount / 100;
+    price -= discountAmount;
+    float total = price * weight / 100;
 
-        for (int j = 0; j < 2 * i + 1; j++)
-        {
-            std::cout << "#";
-        }
-
-        std::cout << std::endl;
-    }
-
+    std::cout << "Total price: " << total << " DISCOUNT IS: " << discount << std::endl;
     return 0;
 }
