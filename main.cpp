@@ -1,50 +1,56 @@
 #include <iostream>
+#include <cmath>
+#include <corecrt_math_defines.h>
 
 /*
-Задача 4. Аккуратность
-Робот из задачи «Компьютерное зрение» верно определяет клетку, на которой стоят
-фигуры. Но соперник-человек может поставить фигуру не по центру клетки, а со
-смещением. Если во время игры такое смещение станет велико, робот не поймёт, в
-какой клетке стоит фигура. Чтобы избежать этого, робот должен поправлять фигуры
-на доске, выставляя их по центру клетки. Модифицируйте программу «Компьютерное
-зрение», чтобы она выдавала не только номера клетки с фигурой, но и две
-вещественные поправки: показывала, как передвинуть фигуру по горизонтали и
-вертикали, чтобы она встала по центру своей клетки. Обеспечьте контроль ввода.
+Задача 4. Убийца Photoshop
+Вы разрабатываете новый крутой графический редактор. Один из инструментов
+редактора позволяет делать градиент — плавный переход между двумя точками 
+разной яркости.
+Яркость точки определяется целым числом от 0 до 255, где 0 — чёрный, 255 —
+белый, а всё, что между ними — оттенки серого.
+
+Напишите код для расчёта яркости точки градиента между двумя заданными точками.
+Пользователь вводит яркость левой границы градиента, потом яркость правой
+границы и параметр: число от 0 до 1, которое означает интересующую нас точку.
+Например, если параметр равен 0.5, то искомая точка находится ровно посередине
+между левой и правой границами, если параметр равен 0, то искомая точка
+совпадает с левой границей, и, наконец, если параметр равен 1, то искомая точка
+совпадает с правой границей. Программа должна вывести число — яркость искомой
+точки. Обеспечьте контроль ввода.
 */
 
 int main()
 {
-    float x,y;
-    std::cout << "Enter figure location: ", std::cin >> x >> y;
+    int leftBrightness, rightBrightness;
+    float parameter;
 
-    while (x < 0 || x > 0.8 || y < 0 || y > 0.8)
-    {
-        std::cout << "Invalid input. Please enter coordinates between 0 and 0.8." << std::endl;
-        std::cout << "Enter figure location: ", std::cin >> x >> y;
+    std::cout << "Enter the brightness of the left boundary (0-255): ";
+    std::cin >> leftBrightness;
+
+    while (leftBrightness < 0 || leftBrightness > 255) {
+        std::cout << "Invalid brightness. Try again: ";
+        std::cin >> leftBrightness;
     }
 
-    int xCoordinate =  x*100;
-    int yCoordinate =  y*100;
+    std::cout << "Enter the brightness of the right boundary (0-255): ";
+    std::cin >> rightBrightness;
+    while (rightBrightness < 0 || rightBrightness > 255) {
+        std::cout << "Invalid brightness. Try again: ";
+        std::cin >> rightBrightness;
+    }
+
+    std::cout << "Enter the parameter (0-1): ";
+    std::cin >> parameter;
     
-    if (xCoordinate % 10 > 5)
-    {
-        xCoordinate = (xCoordinate / 10) + 1;
-    }
-    else
-    {
-        xCoordinate = xCoordinate / 10;
-    }
-    if (yCoordinate % 10 > 5)
-    {
-        yCoordinate = (yCoordinate / 10) + 1;
-    }
-    else
-    {
-        yCoordinate = yCoordinate / 10;
+    while (parameter < 0 || parameter > 1) {
+        std::cout << "Invalid parameter. Try again: ";
+        std::cin >> parameter;
     }
 
-    std::cout << "Cell coordinates are: " << xCoordinate << " " << yCoordinate << std::endl;
-    std::cout << "Move figure by: " << (xCoordinate * 10 - x * 100) / 10 << " " << (yCoordinate * 10 - y * 100) / 10 << std::endl;
+    float result = leftBrightness + (rightBrightness - leftBrightness) * parameter;
+
+    std::cout << "The brightness of the point is: " << result << std::endl;
 
     return 0;
 }
