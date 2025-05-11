@@ -82,7 +82,7 @@ int main()
             std::cout << "Invalid drink choice." << std::endl;
         }
 
-        if (waterAmount < 30 && milkAmount < 270)
+        if (waterAmount < 300 || (milkAmount < 270 && waterAmount < 30))
         {
             std::cout << "Ingredients are finished." << std::endl;
             std::cout << "Water left: " << waterAmount << " ml" << std::endl;

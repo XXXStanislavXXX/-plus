@@ -27,38 +27,25 @@ int main()
     int antibioticDrops;
     std::cout << "Please enter how many antibiotic drops do you have? : ", std::cin >> antibioticDrops;
 
-    while (bacteriaCount < 0 || antibioticDrops < 0)
+    for (int time = 1; time <= 10; time++)
     {
-        std::cout << "Invalid input." << std::endl;
-        std::cout << "Please enter how many bacteria do you have? : ", std::cin >> bacteriaCount;
-        std::cout << "Please enter how many antibiotic drops do you have? : ", std::cin >> antibioticDrops;
-    }
-    int antibioticEffect = 10;
-    int hour = 0;
-    while (bacteriaCount > 0 && antibioticDrops > 0)
-    {
-        std::cout << "In " << hour << " hour(s) you will have " << bacteriaCount << " bacteria left." << std::endl;
-        bacteriaCount *= 2;
-
-        if (antibioticDrops > 0)
+        if (bacteriaCount <= 0)
         {
-            bacteriaCount -= antibioticEffect * antibioticDrops;
-            if (bacteriaCount < 0)
-            {
-                bacteriaCount = 0;
-            }
-            antibioticDrops--;
-            antibioticEffect--;
+            std::cout << "Invalid bacterial count!" << std::endl;
+            std::cout << "Please enter how many bacteria do you have? : ", std::cin >> bacteriaCount;
         }
 
-        hour++;
-    }
-    std::cout << "In " << hour << " hour(s) you will have " << bacteriaCount << " bacteria left." << std::endl;
-    std::cout << "Antibiotic drops left: " << antibioticDrops << std::endl;
-    std::cout << "Antibiotic effect left: " << antibioticEffect << std::endl;
-    return 0;
+        if (antibioticDrops <= 0)
+        {
+            std::cout << "INvalid antibiotic count!" << std::endl;
+            std::cout << "Please enter how many antibiotic drops do you have? : ", std::cin >> antibioticDrops;
+        }
 
-    /*
-    Не уверен в правильности решения так как не уверен верно ли понял задание...
-    */
+        bacteriaCount *= 2;
+        bacteriaCount -= (11 - time) * antibioticDrops;
+
+        std::cout << "After " << time << " hour(s) there are " << bacteriaCount << " bacteria left." << std::endl;
+    }
+    
+    std::cout << "The experiment is over!" << std::endl;
 }
