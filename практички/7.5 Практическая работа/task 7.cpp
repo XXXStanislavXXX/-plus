@@ -43,6 +43,12 @@ int main()
 
         bacteriaCount *= 2;
         bacteriaCount -= (11 - time) * antibioticDrops;
+        
+        if (bacteriaCount <= 0)
+        {
+            std::cout << "After " << time << " hour(s) there are " << bacteriaCount << " bacteria left." << std::endl;
+            break;
+        }
 
         std::cout << "After " << time << " hour(s) there are " << bacteriaCount << " bacteria left." << std::endl;
     }
