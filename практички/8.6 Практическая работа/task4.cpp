@@ -1,6 +1,5 @@
 #include <iostream>
 #include <cmath>
-#include <corecrt_math_defines.h>
 #include <windows.h> // Donno how to force c++ to wait 1 second otherway
 
 /*
@@ -46,7 +45,7 @@ int main()
         Sleep(1000); // Donno how to force c++ to wait 1 second otherway
     }
 
-    std::cout << "Download completed in " << downloadTime << " seconds." << std::endl;
+    std::cout << "Download completed in " << round(downloadTime) << " seconds." << std::endl;
 
     return 0;
 }

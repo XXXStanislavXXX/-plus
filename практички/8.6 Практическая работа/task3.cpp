@@ -1,6 +1,5 @@
 #include <iostream>
 #include <cmath>
-#include <corecrt_math_defines.h>
 
 /*
 Задание 3. Игрушечная история
@@ -40,21 +39,40 @@ int main()
     }
 
     float cubeSide = 5.0f;
-    int cubesInBlock = blockLength / cubeSide *
-                       blockWidth / cubeSide *
-                       blockHeight / cubeSide;
 
-    int cubesInSet = cubesInBlock - 1;
+    int cubesInLenght = blockLength / cubeSide;
+    int cubesInWidth = blockWidth / cubeSide;
+    int cubesInHeight = blockHeight / cubeSide;
 
-    std::cout << "You can make " << cubesInBlock << " cubes from the block." << std::endl;
+    while (cubesInLenght <= 0 || cubesInWidth <= 0 || cubesInHeight <= 0)
+    {
+        std::cout << "Invalid dimensions. Please enter positive values." << std::endl;
+        std::cout << "Enter the dimensions of the block (length, width, height) in cm: ";
+        std::cin >> blockLength >> blockWidth >> blockHeight;
+    }
 
+    int cubesQuantity = cubesInLenght * cubesInWidth * cubesInHeight;
+    std::cout << "You can make " << cubesQuantity << " cubes from the block." << std::endl;
+
+    int cubesInSet = 0;
+
+    for (int i = 1; i <= cubesQuantity; i++)
+    {
+
+        if (i * i * i <= cubesQuantity)
+        {
+            cubesInSet = i;
+        }
+
+    }
     if (cubesInSet > 0)
     {
-        std::cout << "You can create a set with " << cubesInSet << " cubes." << std::endl;
+        std::cout << "You can create a set of " << cubesInSet * cubesInSet * cubesInSet << " cubes." << std::endl;
     }
+
     else
     {
-        std::cout << "You cannot create a set with the available cubes." << std::endl;
+        std::cout << "You cannot create a set of cubes." << std::endl;
     }
 
     return 0;

@@ -1,6 +1,5 @@
 #include <iostream>
 #include <cmath>
-#include <corecrt_math_defines.h>
 
 /*
 Задание 6. Маятник
