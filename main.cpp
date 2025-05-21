@@ -1,52 +1,54 @@
 #include <iostream>
-#include <cmath>
+#include <string>
 
 /*
-Задание 6. Маятник
-Что нужно сделать
-Известно, что амплитуда качающегося маятника с каждым разом затухает на 8,4% от
-амплитуды прошлого колебания. Если качнуть маятник, он, строго говоря, никогда
-не остановится: его амплитуда будет уменьшаться до тех пор, пока мы не сочтём
-такой маятник остановившимся. Напишите программу, определяющую, сколько раз
-качнётся маятник, прежде чем он, по нашему мнению, остановится. Программа
-получает на вход начальную амплитуду колебания в сантиметрах и конечную
-амплитуду его колебаний, которая считается остановкой маятника. Обеспечьте
-контроль ввода.
+Напишите программу, которая проверяет, верно ли, что данная строка представляет
+из себя некоторую другую строку, повторённую несколько раз. Например, строка
+dabudabudabu — это трижды повторённая строка dabu. Строка kapkap — это дважды
+повторённая строка kap. А вот строку abdabdab или строку gogolmogol нельзя
+представить как повторение некоторой другой строки.
+
+На вход программа должна принимать строку и выдавать ответ Yes, если строка
+является повторением некоторой другой строки, и No, если это не так.
 */
 
 int main()
 {
-    float startAmplitude, endAmplitude;
-    std::cout << "Enter start amplitude: ", std::cin >> startAmplitude;
+    std::string str;
+    std::cout << "Enter string: ";
+    std::cin >> str;
 
-    while(startAmplitude <= 0)
+    int n = str.length();
+    bool isRepeated = false;
+
+    for (int i = 1; i <= n / 2; i++)
     {
-        std::cout << "Start amplitude must be greater than 0. Try again: ", std::cin >> startAmplitude;
+        if (n % i == 0)
+        {
+            std::string substring = str.substr(0, i);
+            std::string repeatedSubstring;
+
+            for (int j = 0; j < n / i; j++)
+            {
+                repeatedSubstring += substring;
+            }
+
+            if (repeatedSubstring == str)
+            {
+                isRepeated = true;
+                break;
+            }
+        }
     }
 
-    std::cout << "Enter end amplitude: ", std::cin >> endAmplitude;
-
-    while(endAmplitude <= 0)
+    if (isRepeated)
     {
-        std::cout << "End amplitude must be greater than 0. Try again: ", std::cin >> endAmplitude;
+        std::cout << "Yes" << std::endl;
     }
-
-    if(startAmplitude < endAmplitude)
+    else
     {
-        std::cout << "Start amplitude must be greater than end amplitude. Try again: ", std::cin >> startAmplitude, endAmplitude;
+        std::cout << "No" << std::endl;
     }
-    
-    int count = 0;
-
-    float currentAmplitude = startAmplitude;
-
-    while(currentAmplitude > endAmplitude)
-    {
-        currentAmplitude -= currentAmplitude * 0.084;
-        count++;
-    }
-
-    std::cout << "The pendulum will swing " << count << " times before it stops." << std::endl;
 
     return 0;
 }
